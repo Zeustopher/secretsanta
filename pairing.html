@@ -116,7 +116,7 @@
 
     <script>
 
-        var queryString = _.chain(location.search.slice(1).split(/&/g))
+        var hashString = _.chain(location.hash.slice(1).split(/&/g))
                 .map(function (item) {
                     if (item) {
                         return item.split(/=/).map(function (str) {
@@ -126,9 +126,9 @@
                 })
                 .compact().object().value();
 
-        var name = queryString.name;
+        var name = hashString.name;
 
-        var pairing = CryptoJS.AES.decrypt(queryString.pairing, queryString.key).toString(CryptoJS.enc.Utf8);
+        var pairing = CryptoJS.AES.decrypt(hashString.pairing, hashString.key).toString(CryptoJS.enc.Utf8);
         var pairingDefinition = pairing.match(/^([^(]+)(?: (\([^)]+\)))?$/);
 
     </script>
