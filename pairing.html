@@ -64,13 +64,6 @@
             display: flex;
         }
 
-        .background {
-            position: absolute;
-
-            left: 0;
-            bottom: 0;
-        }
-
         .wrapper {
             margin: auto;
             padding: 20px;
@@ -103,13 +96,30 @@
         }
 
         #pairing-name {
-            font-size: 90px;
+            font-size: 75px;
         }
 
         #pairing-details {
             margin-bottom: 20px;
 
             font-size: 20px;
+        }
+
+        .reveal-button {
+            background-color: #EF3D3D;
+            color: white;
+            border: none;
+            margin-top: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .reveal-button:hover {
+            background-color: #FB3B3B;
         }
 
     </style>
@@ -142,13 +152,20 @@
     <div class="wrapper">
         <div class="content">
 
-            <div class="title">Hi <span id="name"></span>! You've been paired with</div>
+            <div class="title">Hi <span id="name"></span>!</div>
             <script>document.getElementById('name').innerText = name</script>
+            <br>
+
+            <div>You'll be giving to</div>
+            <button id="reveal-button" class="reveal-button">Reveal Name</button>
 
             <div class="pairing">
                 <div id="pairing-name"></div>
                 <div id="pairing-details"></div>
-                <script>
+            </div>
+
+            <script>
+                document.getElementById('reveal-button').addEventListener('click', function () {
                     document.getElementById('pairing-name').innerText = pairingDefinition[1];
 
                     if (pairingDefinition[2]) {
@@ -157,14 +174,14 @@
                     else {
                         document.getElementById('pairing-details').style.display = 'none';
                     }
-                </script>
-            </div>
 
-            <div class="title">Good luck!</div>
-
-            <script>
+                    document.querySelector('.pairing').style.display = 'block';
+                    this.style.display = 'none';
+                });
             </script>
+            <br>
 
+            <div class="title">Merry Christmas!</div>
         </div>
     </div>
 
